@@ -15,10 +15,15 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(helmet());
+
+// CORS configuration - MUST be before other middleware
 app.use(cors({
   origin: process.env.CORS_ORIGIN || 'http://localhost:4200',
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -150,6 +155,7 @@ async function startServer() {
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📝 Environment: ${process.env.NODE_ENV}`);
+      console.log(`🌐 CORS Origin: ${process.env.CORS_ORIGIN || 'http://localhost:4200'}`);
       console.log(`🗄️  Database: Connected and migrated`);
       console.log('');
       console.log('========================================');
