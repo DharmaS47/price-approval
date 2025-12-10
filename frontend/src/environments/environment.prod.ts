@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://price-approval-api-jqv4.onrender.com/api'
+  apiUrl: 'https://price-approval-api.onrender.com/api'
 };
